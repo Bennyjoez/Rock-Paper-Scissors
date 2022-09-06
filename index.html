@@ -39,7 +39,7 @@
             // scissors > paper
             // paper > rock
 
-        function setWinner(playerSelection, computerSelection = getComputerChoice()) {
+        function playRound(playerSelection, computerSelection = getComputerChoice()) {
             if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
                 return "It's a tie! Play again!";
             } else if (playerSelection.toLowerCase() === "rock") {
@@ -66,8 +66,50 @@
         }
 
         
-        console.log(setWinner('Paper'));
+        // Gaming function 
+            // It needs to play a set of 5 games and keep a record.
+            // After each set of five, the totals of wins and loses are taken
+            // The winner is set from the highest number of wins
+            // 
+        function game() {
+            const numberOfGames = 5;
+            let resultArr = [];
+            for(let i = numberOfGames; i >= 1; i--) {
+                let result = playRound('rock')
+                resultArr.push(result)
+            }
+
+            // setting the number of wins for the computer and the player
+                // The player can only win if the number of wins is greater than the computer wins
+                // declare a starting value of wins for the comp and the player
+            let playerWins = 0;
+            let computerWins = 0;
+            let numberOfTies = 0;
+
+            for(let i = 0; i < resultArr.length; i++) {
+                let winRgx = /win/g
+                let looseRgx = /loose/g
+                if(winRgx.test(resultArr[i])) {
+                    playerWins += 1
+                } else if (looseRgx.test(resultArr[i])) {
+                    computerWins += 1
+                } else {
+                    numberOfTies += 1
+                }
+            }
+
+            // establishing the winner
+            if(playerWins > computerWins) {
+                return `You WIN!! Score: Player(${playerWins}) :: Computer(${computerWins}) :: Number of Draws(${numberOfTies})`
+            } else if(playerWins < computerWins) {
+                return `The Computer WINS!! Scores: Computer(${computerWins}) :: Player(${playerWins}) :: Number of Draws(${numberOfTies})`
+            } else {
+                return `It's a DRAW!! Scores: Number of Draws(${numberOfTies + computerWins}) :: Computer(${computerWins}) :: Player(${playerWins})`
+            }
+        }
         
+        console.log(game());
+
     </script>
 </body>
 </html>

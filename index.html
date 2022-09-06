@@ -8,6 +8,65 @@
 </head>
 <body>
     <script>
+        // Create a function that determines the computers selection
+            // The computers choice needs to be purely random to make the game unpredictable
+                // use Math.random() for this and cap it at only three possible numbers
+                // Need to get a  way to select a random number that is assigned the names of either rock, paper or scissors
+                // get the computers choice by allocating a random number to a definite choice
+
+        function getComputerChoice() {
+            let computerSelection = '';
+            let randomChoiceNumber = Math.floor(Math.random()*3 + 1);
+            if (randomChoiceNumber === 1) {
+                computerSelection = "Rock";
+            } else if (randomChoiceNumber === 2) {
+                computerSelection = "Paper";
+            } else if (randomChoiceNumber === 3) {
+                computerSelection = "Scissors";
+            } else {
+                console.log('An error has occurred')
+            }
+            return computerSelection
+        }
+
+
+        // Creating a winner only when the player's selection matches the computers selection
+            // You need to get the player's selection.
+            // convert the player's selection and the computer's selection to lowercase/uppercase for comparability
+            // compare both the selections to give a true/false value
+            // Output You win message if the result is true and you loose message if the result is false
+            // rock > scissors
+            // scissors > paper
+            // paper > rock
+
+        function setWinner(playerSelection, computerSelection = getComputerChoice()) {
+            if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+                return "It's a tie! Play again!";
+            } else if (playerSelection.toLowerCase() === "rock") {
+                if (computerSelection === "Scissors") {
+                    return 'You win! Rock beats scissors';
+                } else {
+                    return 'You loose! Paper beats rock';
+                }
+            } else if (playerSelection.toLowerCase() === "paper") {
+                if (computerSelection === "Scissors") {
+                    return 'You loose! Scissors beats paper';
+                } else {
+                    return 'You win! Paper beats rock';
+                }
+            } else if (playerSelection.toLowerCase() === "scissors"){
+                if (computerSelection === "Rock") {
+                    return 'You loose! Rock beats scissors';
+                } else {
+                    return 'You win! Scissors beats Paper';
+                }
+            } else {
+                return 'Please select a valid option between "Rock", "Paper" or "Scissors"';
+            }
+        }
+
+        
+        console.log(setWinner('Paper'));
         
     </script>
 </body>

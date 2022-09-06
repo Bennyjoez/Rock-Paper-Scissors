@@ -39,22 +39,22 @@
             // scissors > paper
             // paper > rock
 
-        function playRound(playerSelection, computerSelection = getComputerChoice()) {
-            if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection == computerSelection.toLowerCase()) {
                 return "It's a tie! Play again!";
-            } else if (playerSelection.toLowerCase() === "rock") {
+            } else if (playerSelection === "rock") {
                 if (computerSelection === "Scissors") {
                     return 'You win! Rock beats scissors';
                 } else {
                     return 'You loose! Paper beats rock';
                 }
-            } else if (playerSelection.toLowerCase() === "paper") {
+            } else if (playerSelection === "paper") {
                 if (computerSelection === "Scissors") {
                     return 'You loose! Scissors beats paper';
                 } else {
                     return 'You win! Paper beats rock';
                 }
-            } else if (playerSelection.toLowerCase() === "scissors"){
+            } else if (playerSelection === "scissors"){
                 if (computerSelection === "Rock") {
                     return 'You loose! Rock beats scissors';
                 } else {
@@ -65,7 +65,8 @@
             }
         }
 
-        
+        const computerSelection = getComputerChoice(); 
+
         // Gaming function 
             // It needs to play a set of 5 games and keep a record.
             // After each set of five, the totals of wins and loses are taken
@@ -75,8 +76,14 @@
             const numberOfGames = 5;
             let resultArr = [];
             for(let i = numberOfGames; i >= 1; i--) {
-                let result = playRound('rock')
-                resultArr.push(result)
+                // Getting the player's input
+                const playerSelection = prompt('What is your choice? "Rock", "Paper" or "Scissors"', '').toLowerCase();
+
+                // need to test the input to confirm its correctness
+                if(playerSelection == "rock" || "paper" || "scissors") {
+                    let result = playRound(playerSelection, computerSelection)
+                    resultArr.push(result)
+                }
             }
 
             // setting the number of wins for the computer and the player
@@ -103,10 +110,13 @@
                 return `You WIN!! Score: Player(${playerWins}) :: Computer(${computerWins}) :: Number of Draws(${numberOfTies})`
             } else if(playerWins < computerWins) {
                 return `The Computer WINS!! Scores: Computer(${computerWins}) :: Player(${playerWins}) :: Number of Draws(${numberOfTies})`
+            } else if (playerWins === computerWins && playerWins > 0) {
+                return `It's a DRAW!! Scores: Number of Draws(${numberOfTies}) :: Computer(${computerWins}) :: Player(${playerWins})`
             } else {
-                return `It's a DRAW!! Scores: Number of Draws(${numberOfTies + computerWins}) :: Computer(${computerWins}) :: Player(${playerWins})`
+                return `An Error must have occurred`
             }
         }
+
         
         console.log(game());
 

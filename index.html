@@ -65,26 +65,7 @@
             }
         }
 
-        const computerSelection = getComputerChoice(); 
-
-        // Gaming function 
-            // It needs to play a set of 5 games and keep a record.
-            // After each set of five, the totals of wins and loses are taken
-            // The winner is set from the highest number of wins
-            // 
-        function game() {
-            const numberOfGames = 5;
-            let resultArr = [];
-            for(let i = numberOfGames; i >= 1; i--) {
-                // Getting the player's input
-                const playerSelection = prompt('What is your choice? "Rock", "Paper" or "Scissors"', '').toLowerCase();
-
-                // need to test the input to confirm its correctness
-                if(playerSelection == "rock" || "paper" || "scissors") {
-                    let result = playRound(playerSelection, computerSelection)
-                    resultArr.push(result)
-                }
-            }
+        const computerSelection = getComputerChoice();
 
             // setting the number of wins for the computer and the player
                 // The player can only win if the number of wins is greater than the computer wins
@@ -115,7 +96,6 @@
             } else {
                 return `An Error must have occurred`
             }
-        }
 
         
         console.log(game());

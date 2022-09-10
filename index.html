@@ -7,6 +7,15 @@
     <title>Rock Paper Scissors Game</title>
 </head>
 <body>
+    <div class="buttons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+
+
+
+
     <script>
         // Create a function that determines the computers selection
             // The computers choice needs to be purely random to make the game unpredictable
@@ -65,7 +74,18 @@
             }
         }
 
-        const computerSelection = getComputerChoice();
+
+
+        function playerSelects(e) {
+            const playerSelection = this.innerText;
+            const computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
+        }
+        const buttons = document.querySelectorAll('button');
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', playerSelects)
+        })
 
 
     </script>

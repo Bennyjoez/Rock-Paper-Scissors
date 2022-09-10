@@ -12,6 +12,15 @@
         <button id="paper">Paper</button>
         <button id="scissors">Scissors</button>
     </div>
+    <div id="result"></div>
+    <div id="resultsLog">
+        <table>
+            <tr>
+                <td>Computer</td>
+                <td>Player</td>
+            </tr>
+        </table>
+    </div>
 
 
 
@@ -48,29 +57,39 @@
             // scissors > paper
             // paper > rock
 
+        const resultOfGame = document.querySelector('#result')
+        
         function playRound(playerSelection, computerSelection) {
-            if (playerSelection == computerSelection.toLowerCase()) {
-                return "It's a tie! Play again!";
-            } else if (playerSelection === "rock") {
+            if (playerSelection == computerSelection) {
+                resultOfGame.innerText = "It's a tie! Play again!";
+                resultOfGame.style.color = 'Black'
+            } else if (playerSelection === "Rock") {
                 if (computerSelection === "Scissors") {
-                    return 'You win! Rock beats scissors';
+                    resultOfGame.innerText = 'You win! Rock beats scissors';
+                    resultOfGame.style.color = 'Green'
                 } else {
-                    return 'You loose! Paper beats rock';
+                    resultOfGame.innerText = 'You loose! Paper beats rock';
+                    resultOfGame.style.color = 'Brown'
                 }
-            } else if (playerSelection === "paper") {
+            } else if (playerSelection === "Paper") {
                 if (computerSelection === "Scissors") {
-                    return 'You loose! Scissors beats paper';
+                    resultOfGame.innerText = 'You loose! Scissors beats paper';
+                    resultOfGame.style.color = 'Brown'
                 } else {
                     return 'You win! Paper beats rock';
+                    resultOfGame.style.color = 'Green'
                 }
-            } else if (playerSelection === "scissors"){
+            } else if (playerSelection === "Scissors"){
                 if (computerSelection === "Rock") {
-                    return 'You loose! Rock beats scissors';
+                    resultOfGame.innerText = 'You loose! Rock beats scissors';
+                    resultOfGame.style.color = 'Brown'
                 } else {
-                    return 'You win! Scissors beats Paper';
+                    resultOfGame.innerText = 'You win! Scissors beats Paper';
+                    resultOfGame.style.color = 'Green'
                 }
             } else {
-                return 'Please select a valid option between "Rock", "Paper" or "Scissors"';
+                resultOfGame.innerText = 'Please select a valid option between "Rock", "Paper" or "Scissors"';
+                resultOfGame.style.color = 'red'
             }
         }
 
@@ -79,13 +98,16 @@
         function playerSelects(e) {
             const playerSelection = this.innerText;
             const computerSelection = getComputerChoice();
-            playRound(playerSelection, computerSelection);
+            console.log(playRound(playerSelection, computerSelection));
         }
+
+
         const buttons = document.querySelectorAll('button');
-        
         buttons.forEach(button => {
             button.addEventListener('click', playerSelects)
         })
+
+
 
 
     </script>

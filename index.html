@@ -172,6 +172,17 @@
                     resultOfGame.style.color = "Brown"
                 }
             }
+
+            newGameButton.addEventListener('click', playAnotherGame)
+        }
+
+
+        function playAnotherGame() {
+            document.querySelector('.another').style.display = "none"
+
+            resultOfGame.innerText = "";
+
+            buttons.forEach(button => button.style.display = 'Initial')
         }
 
     </script>

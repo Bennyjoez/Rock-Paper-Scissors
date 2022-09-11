@@ -60,11 +60,12 @@
             const playerSelection = this.innerText;
             const computerSelection = getComputerChoice();
 
-            const numberOfGamesPerSet = document.querySelectorAll('tr').length - 1;
-            if(numberOfGamesPerSet < 5) {
+            const numberOfGamesPlayed = document.querySelectorAll('tr').length - 1;
+            if(numberOfGamesPlayed < 5) {
                 playRound(playerSelection, computerSelection);                
                 postResult(playerSelection, computerSelection);
             }
+
         }
 
         

@@ -8,6 +8,7 @@
     <title>Rock Paper Scissors Game</title>
 </head>
 <body>
+    <div class="playAgain"></div>
     <div class="buttons">
         <button id="rock">Rock</button>
         <button id="paper">Paper</button>
@@ -149,13 +150,26 @@
 
 
         function setWinner(computerWins, playerWins) {
+            buttons.forEach(button => {
+                button.style.display = 'none'
+            })
+
+            const newGameButton = document.createElement('button')
+            newGameButton.innerText = 'Play Again'
+            newGameButton.classList.add('another')
+            const playAgain = document.querySelector('.playAgain')
+            playAgain.appendChild(newGameButton);
+
             if(playerWins + computerWins <= 5) {
                 if(playerWins === computerWins) {
                     resultOfGame.innerText = `IT'S A TIE`
+                    resultOfGame.style.color = 'Black'
                 } else if(playerWins > computerWins) {
                     resultOfGame.innerText = `YOU WIN THIS ROUND`
+                    resultOfGame.style.color = "Green"
                 } else if(computerWins > playerWins) {
                     resultOfGame.innerText = `THE COMPUTER WINS THIS ROUND`
+                    resultOfGame.style.color = "Brown"
                 }
             }
         }

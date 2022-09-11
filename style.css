@@ -18,3 +18,8 @@ div#result {
 table, th, td {
     border: 1px solid black;
 }
+
+.another {
+    color: black;
+    background-color: greenyellow;
+}

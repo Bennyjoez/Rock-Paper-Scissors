@@ -18,6 +18,7 @@
             <tr>
                 <th>Computer</th>
                 <th>Player</th>
+                <th>Who Wins?</th>
             </tr>
         </table>
     </div>
@@ -31,7 +32,11 @@
                 // use Math.random() for this and cap it at only three possible numbers
                 // Need to get a  way to select a random number that is assigned the names of either rock, paper or scissors
                 // get the computers choice by allocating a random number to a definite choice
-
+        const resultOfGame = document.querySelector('#result');
+        const resultsTable = document.querySelector('table');
+        let playerWins = 0;
+        let computerWins = 0;
+        
         function getComputerChoice() {
             let computerSelection = '';
             let randomChoiceNumber = Math.floor(Math.random()*3 + 1);
@@ -64,15 +69,11 @@
             if(numberOfGamesPlayed < 5) {
                 playRound(playerSelection, computerSelection);                
                 postResult(playerSelection, computerSelection);
+            } else {
+                setWinner(computerWins, playerWins)
             }
 
         }
-
-        
-        const resultOfGame = document.querySelector('#result');
-        const resultsTable = document.querySelector('table');
-        let playerWins = 0;
-        let computerWins = 0;
         
         function playRound(playerSelection, computerSelection) {
 
@@ -128,12 +129,15 @@
             const newResult = document.createElement('tr')
             const computerResult = document.createElement('td')
             const playerResult = document.createElement('td')
+            const whoWins = document.createElement('td')
 
             computerResult.innerText = computerSelection;
             playerResult.innerText = playerSelection;
+            whoWins.innerText = resultOfGame.innerText;
 
             newResult.appendChild(computerResult);
             newResult.appendChild(playerResult);
+            newResult.appendChild(whoWins);
             resultsTable.appendChild(newResult);
         }
 

@@ -23,3 +23,8 @@ table, th, td {
     color: black;
     background-color: greenyellow;
 }
+
+.dontDisplay {
+    display: none;
+}
+

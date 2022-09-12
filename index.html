@@ -178,12 +178,21 @@
 
 
         function playAnotherGame() {
-            document.querySelector('.another').style.display = "none"
+            const playAgainHolder = document.querySelector('.playAgain')
+            playAgainHolder.removeChild(playAgainHolder.firstElementChild)
 
             resultOfGame.innerText = "";
 
+            let displayedResults = document.querySelectorAll('tr')
+            let displayedResultsArr = Array.from(displayedResults);
+            for(let i = 1; i < displayedResultsArr.length; i++) {
+                resultsTable.removeChild(displayedResultsArr[i])
+            }
+
             buttons.forEach(button => button.style.display = 'Initial')
+            buttons.forEach(button => button.addEventListener('click', playerSelects))
         }
+
 
     </script>
 </body>

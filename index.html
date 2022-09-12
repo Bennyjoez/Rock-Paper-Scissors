@@ -67,12 +67,14 @@
             const playerSelection = this.innerText;
             const computerSelection = getComputerChoice();
 
-            const numberOfGamesPlayed = document.querySelectorAll('tr').length - 1;
-            if(numberOfGamesPlayed < 5) {
+            // const numberOfGamesPlayed = document.querySelectorAll('tr').length - 1;
+            if(playerWins === 5 || computerWins === 5) {
+                setWinner(computerWins, playerWins)
+                playerWins = 0;
+                computerWins = 0;
+            } else {
                 playRound(playerSelection, computerSelection);                
                 postResult(playerSelection, computerSelection);
-            } else {
-                setWinner(computerWins, playerWins)
             }
 
         }
@@ -154,23 +156,24 @@
                 button.style.display = 'none'
             })
 
+            
+
             const newGameButton = document.createElement('button')
             newGameButton.innerText = 'Play Again'
             newGameButton.classList.add('another')
             const playAgain = document.querySelector('.playAgain')
             playAgain.appendChild(newGameButton);
 
-            if(playerWins + computerWins <= 5) {
-                if(playerWins === computerWins) {
-                    resultOfGame.innerText = `IT'S A TIE`
-                    resultOfGame.style.color = 'Black'
-                } else if(playerWins > computerWins) {
-                    resultOfGame.innerText = `YOU WIN THIS ROUND`
-                    resultOfGame.style.color = "Green"
-                } else if(computerWins > playerWins) {
-                    resultOfGame.innerText = `THE COMPUTER WINS THIS ROUND`
-                    resultOfGame.style.color = "Brown"
-                }
+            
+            if(playerWins === computerWins) {
+                resultOfGame.innerText = `IT'S A TIE`
+                resultOfGame.style.color = 'Black'
+            } else if(playerWins === 5 && computerWins < 5) {
+                resultOfGame.innerText = `YOU WIN THIS ROUND`
+                resultOfGame.style.color = "Green"
+            } else if(computerWins === 5 && playerWins < 5) {
+                resultOfGame.innerText = `THE COMPUTER WINS THIS ROUND`
+                resultOfGame.style.color = "Brown"
             }
 
             newGameButton.addEventListener('click', playAnotherGame)
@@ -190,7 +193,7 @@
             }
 
             buttons.forEach(button => button.style.display = 'Initial')
-            buttons.forEach(button => button.addEventListener('click', playerSelects))
+
         }
 
 
